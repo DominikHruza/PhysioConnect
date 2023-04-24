@@ -1,0 +1,90 @@
+<div class="modal fade" id="addExerciseModal" tabindex="-1" aria-labelledby="#addExerciseModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addExerciseModalTittle">Exercise {{exerciseNumber}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addExerciseForm="ngForm" (ngSubmit)="onAddExerciseFormSubmit(addExerciseForm)">
+          <div class="form-group mb-3">
+            <label for="exerciseName">Exercise name: </label>
+            <input
+              type="text"
+              class="form-control"
+              id="exerciseName"
+              placeholder="Enter exercise name"
+              ngModel
+              name="name"
+              required
+              #exName="ngModel"
+            >
+            <div><span *ngIf="exName.touched && !exName.valid">Name is required</span></div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="setsNum">Sets</label>
+            <input
+              type="number"
+              class="form-control"
+              id="setsNum"
+              placeholder="Enter number of sets"
+              ngModel
+              name="setNum"
+              required
+              #setNum = "ngModel"
+            >
+            <div><span *ngIf="setNum.touched && !setNum.valid">Set number is required</span></div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="repsNum">Repetitions</label>
+            <input
+              type="number"
+              class="form-control"
+              id="repsNum"
+              placeholder="Enter number of repetitions"
+              ngModel
+              name="repNum"
+              required
+              #repNum="ngModel"
+            >
+            <div><span *ngIf="repNum.touched && !repNum.valid">Repetition number is required</span></div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="detailedDescription">Description</label>
+            <textarea
+              class="form-control"
+              id="detailedDescription"
+              rows="3"
+              ngModel
+              name="description"
+            ></textarea>
+          </div>
+          <div class="form-group mb-3">
+            <label for="fileInput">Video instruction:</label>
+            <input
+              id="fileInput"
+              name="videoFile"
+              type="file"
+              class="form-control-file form-control file-input"
+              (change)="onFileSelected($event)" #fileUpload
+            >
+            <div class="file-upload">
+              {{ (file && file.name) || "No instructions added yet."}}
+              <a class="btn btn-primary" (click)="fileUpload.click()">
+                <i class="fa fa-folder"></i>
+              </a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              [disabled]="!addExerciseForm.valid"
+              type="submit"
+              data-bs-dismiss="modal"
+              class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

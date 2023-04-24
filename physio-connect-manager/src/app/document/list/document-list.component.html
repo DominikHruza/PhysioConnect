@@ -1,0 +1,29 @@
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+  <tr>
+    <th>Name</th>
+    <th>Date added</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="(documents$ | async) as documents">
+  <tr *ngFor="let document of documents">
+    <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">
+      <div class="d-flex align-items-center">
+        <div class="ms-3 text-wrap" style="width: 100px">
+          {{document.fileName}}
+        </div>
+      </div>
+    </td>
+    <td>
+      <p class="fw-normal mb-1">{{document.addedAt  | date:'medium'}}</p>
+    </td>
+    <td>
+      <div><a class="btn btn-primary btn-sm m-1" role="button" (click)="onDownloadClick(document.id)">Download</a></div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+

@@ -1,0 +1,9 @@
+.reps-input {
+  width: 100px;
+  display: inline-block;
+  margin: 5px;
+}
+
+.session-container {
+  max-width: 800px;
+}

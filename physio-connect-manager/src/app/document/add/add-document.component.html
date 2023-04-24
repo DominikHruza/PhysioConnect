@@ -1,0 +1,47 @@
+<!-- Modal -->
+<div class="modal fade" id="addDocumentModal" tabindex="-1" aria-labelledby="#addDocumentModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDocumentModalTittle">Add Document</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-spinner *ngIf="(isLoading$ | async)?.isLoading"></app-spinner>
+        <app-alert
+          *ngIf="!(isLoading$ | async)?.isLoading && resultMsg"
+          [message]="resultMsg"
+          [type]="type"
+          (close)="onHandleAlert()"
+        ></app-alert>
+        <form #addDocumentForm="ngForm" (ngSubmit)="onAddDocumentFormSubmit(addDocumentForm)">
+          <div class="form-group mb-3">
+            <label for="fileInput"></label>
+            <input
+              id="fileInput"
+              name="videoFile"
+              type="file"
+              class="form-control-file form-control file-input"
+              (change)="onFileSelected($event)" #fileUpload
+              required
+            >
+            <div class="file-upload m-2">
+              {{ (file && file.name) || "No document added yet."}}
+              <a class="btn btn-primary" (click)="fileUpload.click()">
+                <i class="fa fa-folder"></i>
+              </a>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              [disabled]="!addDocumentForm.valid"
+              type="submit"
+              class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

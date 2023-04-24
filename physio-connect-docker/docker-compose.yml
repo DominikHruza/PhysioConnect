@@ -1,0 +1,77 @@
+version: "3.8"
+volumes:
+  postgres-data:
+services:
+    postgres:
+        image: postgres
+        environment:
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_DB=physio_connect
+        ports:
+            - "5442:5432"
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+            # copy the sql script to create tables
+            - ./db/physio_connect_db_script.sql:/docker-entrypoint-initdb.d/physio_connect_db_script.sql
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres -d physio_connect"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    phyisio-connect-api:
+        build: 
+            context: ../physio-connect-api
+            dockerfile: Dockerfile
+        ports:
+            - target: 8080
+              published: 8080
+        depends_on:
+            postgres:
+                condition: service_healthy
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/physio_connect
+            - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+            - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+            - SPRING_MAIL_HOST=mail-hog
+            - TZ=Europe/Zagreb
+            # - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+    mail-hog:
+        build: 
+            context: ../physio-connect-mail
+            dockerfile: Dockerfile
+        ports:
+            - target: 1025
+              published: 1025
+
+            - target: 8025
+              published: 8025
+
+    physio-connect-manager:
+        build: 
+            context: ../physio-connect-manager
+        ports:
+            - "4200:80"
+        tty: true
+        expose:
+            - "80"
+        stdin_open: true
+        environment:
+            - MODE=dev
+            - API_SERVER_URL=phyisio-connect-api
+        depends_on: 
+            - phyisio-connect-api
+    
+    physio-connect-patient:
+        build: 
+            context: ../physio-connect-patient
+        ports:
+            - "4300:80"
+        tty: true
+        expose:
+            - "80"
+        stdin_open: true
+        environment:
+            - MODE=dev

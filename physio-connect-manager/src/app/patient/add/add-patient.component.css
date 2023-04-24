@@ -1,0 +1,7 @@
+.addPatientContainer {
+  max-width: 600px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}

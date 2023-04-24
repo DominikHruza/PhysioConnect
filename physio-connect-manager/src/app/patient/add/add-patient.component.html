@@ -1,0 +1,70 @@
+<div class="container addPatientContainer">
+  <form (ngSubmit)="onAddPatientSubmit(addPatientForm)" #addPatientForm='ngForm'>
+    <app-alert
+      *ngIf="resultMsg"
+      [message]="resultMsg"
+      [type]="type"
+      (close)="onHandleAlert()"
+    ></app-alert>
+    <app-spinner *ngIf="(isLoading$ | async)?.isLoading"></app-spinner>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="firstname" class="form-label">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstname"
+          placeholder="Enter first name"
+          aria-label="First name"
+          required
+          #firstname="ngModel"
+          ngModel name="firstname">
+        <div><span *ngIf="firstname.touched && !firstname.valid">Firstname is required</span></div>
+      </div>
+      <div class="col">
+        <label for="lastname" class="form-label">Last name</label>
+        <input
+          #lastname="ngModel"
+          type="text"
+          id="lastname"
+          class="form-control"
+          placeholder="Enter last name"
+          aria-label="Last name"
+          required
+          ngModel name="lastname">
+        <div><span *ngIf="lastname.touched && !lastname.valid">Lastname is required</span></div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        #email="ngModel"
+        type="email"
+        class="form-control"
+        placeholder="Enter email"
+        id="email"
+        required
+        email
+        ngModel name="email"
+      >
+      <div><span *ngIf="email.touched && !email.valid">Enter valid email</span></div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="diagnosis" class="form-label">Diagnosis</label>
+      <input
+        #diagnosis="ngModel"
+        type="text"
+        placeholder="Enter main diagnosis"
+        class="form-control"
+        id="diagnosis"
+        ngModel name="diagnosis"
+        required
+      >
+      <div><span *ngIf="diagnosis.touched && !diagnosis.valid">Diagnosis is required</span></div>
+    </div>
+    <div class="col-12">
+      <button [disabled]="!addPatientForm.valid" type="submit" class="btn btn-primary">Add</button>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,32 @@
+<div class="planContainer container" *ngIf="(allActivePlans$ | async) as activePlans">
+  <app-spinner *ngIf="(isLoading$ | async)?.isLoading"></app-spinner>
+  <div class="text-center">
+    <h5 *ngIf="activePlans.length <= 0; else listActivePlans">No plans scheduled at the moment.</h5>
+  </div>
+  <ng-template #listActivePlans>
+    <div class="card text-center">
+      <div class="card-header">
+        Start Exercising
+      </div>
+
+        <div class="card-body" *ngFor="let plan of activePlans">
+          <h5 class="card-title">You have exercise session planned for today</h5>
+          <p class="card-text">Start your dose of today's exercise treatment</p>
+<!--          <div class="mb-3 mx-2">-->
+<!--            <div class="progress">-->
+<!--              <div class="progress-bar" role="progressbar" aria-label="Plan progress" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>-->
+<!--            </div>-->
+<!--          </div>-->
+          <a
+            class="btn btn-primary"
+            (click)="handleStartExerciseBtnClick(plan.id)">Start</a>
+<!--          [routerLink]="/exercise-session']" [queryParams]="{planId: plan.id}"-->
+        </div>
+
+<!--        <div class="card-footer text-muted">-->
+<!--          In progress-->
+<!--        </div>-->
+      </div>
+    </ng-template>
+
+</div>

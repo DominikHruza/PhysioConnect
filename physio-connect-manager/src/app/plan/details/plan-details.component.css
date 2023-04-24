@@ -1,0 +1,13 @@
+.exerciseContainer {
+  display: grid;
+  grid-template-rows: repeat(1, auto);
+  grid-template-columns: min-content;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.exerciseCard {
+  width: 400px;
+  border: 1px solid black;
+}
+

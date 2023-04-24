@@ -1,0 +1,44 @@
+<div class="container">
+  <app-spinner *ngIf="(isLoading$ | async)?.isLoading"></app-spinner>
+  <h5 class="mb-3 text-center">Exercise 1: Squats</h5>
+  <div class="exerciseVideo embed-responsive embed-responsive-16by9 card-img-top mb-1 text-center" >
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+  </div>
+  <form>
+      <div class="mb-3 form-check" >
+        <input type="checkbox" class="form-check-input" id="checkSet1">
+        <label class="form-check-label" for="checkSet1"> Set 1: 12 repetitions</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="checkSet2">
+        <label class="form-check-label" for="checkSet1"> Set 2: 12 repetitions</label>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="checkSet3">
+        <label class="form-check-label" for="checkSet1"> Set 3: 12 repetitions</label>
+      </div>
+      <div class="mb-1">
+        <label for="customRange3" class="form-label">Effort level</label>
+        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+      </div>
+      <div class="mb-1">
+        <label for="customRange3" class="form-label">Pain level</label>
+        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+      </div>
+      <div class="mb-1">
+        <label for="commentTextArea" class="form-label">Write your comments</label>
+        <textarea class="form-control" id="commentTextArea" rows="3"></textarea>
+      </div>
+      <div class="mb-5 exerciseButtonsContainer">
+        <button type="button" class="btn btn-primary m-2">
+          Save and Exit
+        </button>
+        <button type="button" class="btn btn-secondary m-2">
+          Previous
+        </button>
+        <button type="button" class="btn btn-secondary m-2">
+          Next
+        </button>
+      </div>
+    </form>
+</div>

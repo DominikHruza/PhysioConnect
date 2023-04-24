@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="dashboard">PhysioConnect</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0"  *ngIf="(auth$ | async)?.loggedInUser && (auth$ | async)?.loggedInUser!.roles.includes(UserRole.PRACTITIONER)">
+        <li class="nav-item mx-2">
+          <a class="nav-link" routerLink="dashboard"><i class="fas fa-calendar"></i> Upcoming visits</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" routerLink="patient/all"><i class="fas fa-people-group"></i> My Patients</a>
+        </li>
+      </ul>
+      <div class="my-2 my-lg-0">
+        <ul class="navbar-nav"  *ngIf="(auth$ | async)?.loggedInUser">
+          <li class="nav-item mx-2 disabled navbar-right pull-right">
+            <a type="button" class="nav-link" (click)="onLogoutClick()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Right elements -->
+  </div>
+</nav>

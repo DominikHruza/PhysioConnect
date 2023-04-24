@@ -1,0 +1,75 @@
+<div *ngIf="exercises$ | async as exercises">
+  <app-add-exercise (onSubmit)="handleAddExerciseSubmit($event)" [exerciseNumber] = "exercises.length + 1"></app-add-exercise>
+  <app-spinner *ngIf="(isLoading$ | async)?.isLoading"></app-spinner>
+  <app-alert
+    *ngIf="!(isLoading$ | async)?.isLoading && resultMsg"
+    [message]="resultMsg"
+    [type]="type"
+    (close)="onHandleAlert()"
+  ></app-alert>
+  <div class="mb-5 planButtonsContainer">
+    <button
+      [disabled]="exercises.length <= 0"
+      type="button"
+      class="btn btn-primary m-2" (click)="onPlanSave()">
+      Save plan
+    </button>
+    <!-- Button trigger add exercise modal -->
+    <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#addExerciseModal">
+      Add Exercise
+    </button>
+  </div>
+
+  <div class="text-center"><h5 *ngIf="exercises.length <= 0; else listExercises">Start adding exercises</h5></div>
+  <ng-template  #listExercises>
+    <div class="exerciseContainer">
+      <div class="card exerciseCard mb-4"*ngFor="let exercise of exercises; index as i">
+          <app-video-player [videoUrl]="getExerciseUrl(exercise)"></app-video-player>
+        <div class="card-body">
+          <h5 class="card-title">Exercise {{i + 1}}: {{exercise.exrxName}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Sets: {{exercise.exrxSets}}</li>
+          <li class="list-group-item">Repetitions: {{exercise.exrxRepetition}}</li>
+          <li class="list-group-item"><p class="card-text">Description: {{exercise.description}}</p></li>
+        </ul>
+        <div class="card-body">
+          <a type="button"
+             class="btn btn-success m-2" (click)="onEditClick(exercise, i)">
+            Edit
+          </a>
+          <a  type="button" class="btn btn-danger card-link" (click)="onRemoveBtnClick(i)">Remove</a>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Modal -->
+  <div class="modal fade" id="savePlanModal" tabindex="-1" aria-labelledby="#savePlanModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="savePlanModalTittle">Enter plan duration</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group mb-3">
+              <label for="start">Start Date:  </label>
+              <input class="form-control mt-1" type="date" id="start" name="birthday">
+            </div>
+            <div class="form-group mb-3">
+              <label for="end">End Date:  </label>
+              <input class="form-control mt-1" type="date" id="end" name="birthday">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

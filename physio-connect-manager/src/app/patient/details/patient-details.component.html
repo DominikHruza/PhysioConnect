@@ -1,0 +1,35 @@
+<div class="patient-details-container">
+  <aside id="patient-info-aside" *ngIf="patient$ | async as patient">
+    <div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h5>{{patient.firstname}} {{patient.lastname}}</h5></li>
+        <li class="list-group-item">Diagnosis: {{patient.diagnosis}}</li>
+        <li class="list-group-item">
+          <a routerLink="/plan/add" [queryParams]="{patientId}" class="btn btn-primary mx-1">Create Plan</a>
+        </li>
+        <li class="list-group-item">
+          <a data-bs-toggle="modal" data-bs-target="#addDocumentModal" class="btn btn-primary mx-1">Add document</a>
+        </li>
+        <li class="list-group-item">
+          <a data-bs-toggle="modal" data-bs-target="#addVisitModal" class="btn btn-primary mx-1 btn-m">Schedule Visit</a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <app-add-visit-modal></app-add-visit-modal>
+  <app-add-document (documentAdded)="onDocumentAdded()" [patientId]=patientId></app-add-document>
+
+  <div class="card plan-card">
+    <h5 class="card-header">Workout plans</h5>
+    <div class="card-body">
+      <app-all-plan [workoutPlans]="workoutPlans"></app-all-plan>
+    </div>
+  </div>
+
+  <div class="documents-container">
+    <h5>Documents</h5>
+    <app-document-list [patientId]="patientId" [documents$]="documents$"></app-document-list>
+  </div>
+</div>
+

@@ -1,0 +1,72 @@
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="editExerciseModalTittle">Exercise {{exerciseNumber}}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form #editExerciseForm="ngForm" (ngSubmit)="onAddExerciseFormSubmit(editExerciseForm)">
+      <div class="form-group mb-3">
+        <label for="exerciseName">Exercise name </label>
+        <input
+          type="text"
+          class="form-control"
+          id="exerciseName"
+          placeholder="Enter exercise name"
+          [ngModel] = "exercise.exrxName"
+          name="name"
+          required
+          #exName="ngModel"
+        >
+        <div><span *ngIf="exName.touched && !exName.valid">Name is required</span></div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="setsNum">Sets</label>
+        <input
+          type="number"
+          class="form-control"
+          id="setsNum"
+          placeholder="Enter number of sets"
+          [ngModel] = "exercise.exrxSets"
+          name="setNum"
+          required
+          #setNum = "ngModel"
+        >
+        <div><span *ngIf="setNum.touched && !setNum.valid">Set number is required</span></div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="repsNum">Repetitions</label>
+        <input
+          type="number"
+          class="form-control"
+          id="repsNum"
+          placeholder="Enter number of repetitions"
+          [ngModel] = "exercise.exrxRepetition"
+          name="repNum"
+          required
+          #repNum="ngModel"
+        >
+        <div><span *ngIf="repNum.touched && !repNum.valid">Repetition number is required</span></div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="detailedDescription">Description</label>
+        <textarea
+          class="form-control"
+          id="detailedDescription"
+          rows="3"
+          [ngModel] = "exercise.description"
+          name="description"
+        ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="this.activeModal.close();">Close</button>
+        <button
+          data-bs-dismiss="modal"
+          [disabled]="!editExerciseForm.valid"
+          type="submit"
+          class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+

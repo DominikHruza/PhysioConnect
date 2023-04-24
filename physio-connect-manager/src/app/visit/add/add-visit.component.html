@@ -1,0 +1,36 @@
+<app-alert
+  [message]="resultMsg"
+  [type] = "type"
+  *ngIf="resultMsg"
+></app-alert>
+
+<!-- Modal -->
+<div class="modal fade" id="addVisitModal" tabindex="-1" aria-labelledby="#addVisitModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <app-alert
+        *ngIf="resultMsg"
+        [message]="resultMsg"
+        [type] = "type"
+        (close) = "onHandleAlert()"
+      ></app-alert>
+      <div class="modal-header">
+        <h5 class="modal-title" id="addVisitModalTittle">Schedule Visit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onAddVisit()" #visitForm="ngForm">
+          <div class="form-group mb-3">
+            <label class="mx-1" for="visitDateTime">Select Date and Time:</label>
+            <input type="datetime-local" id="visitDateTime" ngModel name="scheduledDateTime" >
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

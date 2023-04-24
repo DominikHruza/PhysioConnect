@@ -1,0 +1,35 @@
+<div class="login-form">
+  <form  (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+    <app-alert
+      *ngIf="resultMsg"
+      [message]="resultMsg"
+      [type]="type"
+      (close)="onHandleAlert()"
+    ></app-alert>
+    <app-spinner *ngIf="(isLoading$ | async)?.isLoading"></app-spinner>
+    <h2 class="text-center">Log in</h2>
+    <div class="form-group my-3">
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        required="required"
+        name="email"
+        ngModel
+      >
+    </div>
+    <div class="form-group my-3">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        required="required"
+        name="password"
+        ngModel
+      >
+    </div>
+    <div class="form-group my-3 text-center">
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    </div>
+  </form>
+</div>

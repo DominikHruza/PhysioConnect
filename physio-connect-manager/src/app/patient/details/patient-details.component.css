@@ -1,0 +1,69 @@
+.patient-details-container {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: minmax(300px, max-content) auto;
+  gap: 20px;
+  margin: 20px;
+  grid-template-areas:
+    'aside active-plan'
+    'aside documents-container'
+    'aside patient-history-container';
+}
+
+aside {
+  grid-area: aside;
+  justify-self: start;
+}
+
+.plan-card {
+  width: 55%;
+  grid-area: active-plan;
+}
+
+.documents-container {
+  grid-area: documents-container;
+  gap: 15px;
+  width: 50%;
+}
+
+.patient-history-container {
+  grid-area: patient-history-container;
+}
+
+@media only screen and (min-width:321px) and (max-width:1024px){
+    .patient-details-container {
+      display: grid;
+      margin: 20px;
+      justify-items: center;
+      justify-content: center;
+      grid-template-rows: repeat(3, auto);
+      grid-template-columns: repeat(1, minmax(150px, max-content));
+      gap: 20px;
+      grid-template-areas:
+        'aside'
+        'active-plan'
+        'documents-container'
+        'patient-history-container';
+    }
+
+  aside {
+    grid-area: aside;
+    justify-self: center;
+  }
+
+  .plan-card {
+    grid-area: active-plan;
+    width: 100%;
+  }
+
+  .documents-container {
+    gap: 15px;
+    width: 100%;
+  }
+
+  .patient-history-container {
+    grid-area: patient-history-container;
+
+  }
+
+}

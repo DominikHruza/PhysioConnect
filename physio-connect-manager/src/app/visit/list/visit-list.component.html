@@ -1,0 +1,34 @@
+<div class="mx-3 my-3 calendar-container" *ngIf="(visits$ | async) as visits">
+  <div *ngIf="visits.length <= 0; else listVisits">
+    <div class="card text-center">
+      <div class="card-header">
+        No upcoming visits scheduled
+      </div>
+      <div class="card-body">
+        <p class="card-text">See your patient list and schedule visits.</p>
+        <a routerLink="/patient/all" class="btn btn-primary">Patients</a>
+      </div>
+    </div>
+  </div>
+  <ng-template  #listVisits>
+    <div *ngFor="let visit of visits" class="card mx-auto my-4" style="width: 18rem;">
+      <div class="card-body">
+        <div class="card-header">
+          {{visit.scheduledFor | date:'medium'}}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Patient:
+            <a
+              [routerLink]="['/patient', visit.patient.id, 'details']">
+              {{visit.patient.firstname + ' ' + visit.patient.lastname}}
+            </a>
+          </li>
+          <li class="list-group-item">Diagnosis: {{visit.patient.diagnosis}}</li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
+

@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), url(./assets/fonts/poppins/Poppins-Regular.ttf) format("truetype");
+}
+
+/**{*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  box-sizing: border-box;*/
+/*}*/
+
+body {
+  /*font-family: var(--vz-body-font-family);*/
+  /*font-size: var(--vz-body-font-size);*/
+  /*font-weight: var(--vz-body-font-weight);*/
+  /*line-height: var(--vz-body-line-height);*/
+  /*color: var(--vz-body-color);*/
+  /*min-width: 100vh;*/
+  /*overflow-x: hidden;*/
+}
+
+:root {
+  --vz-blue: #3577f1;
+  --vz-indigo: #405189;
+  --vz-purple: #6559cc;
+  --vz-pink: #f672a7;
+  --vz-red: #f06548;
+  --vz-orange: #f1963b;
+  --vz-yellow: #f7b84b;
+  --vz-green: #0ab39c;
+  --vz-teal: #02a8b5;
+  --vz-cyan: #299cdb;
+  --vz-white: #fff;
+  --vz-gray: #878a99;
+  --vz-gray-dark: #343a40;
+  --vz-gray-100: #f3f6f9;
+  --vz-gray-200: #eff2f7;
+  --vz-gray-300: #e9ebec;
+  --vz-gray-400: #ced4da;
+  --vz-gray-500: #adb5bd;
+  --vz-gray-600: #878a99;
+  --vz-gray-700: #495057;
+  --vz-gray-800: #343a40;
+  --vz-gray-900: #212529;
+  --vz-primary: #405189;
+  --vz-secondary: #3577f1;
+  --vz-success: #0ab39c;
+  --vz-info: #299cdb;
+  --vz-warning: #f7b84b;
+  --vz-danger: #f06548;
+  --vz-light: #f3f6f9;
+  --vz-dark: #212529;
+  --vz-font-sans-serif: "Poppins",sans-serif;
+  --vz-font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --vz-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --vz-body-font-family: var(--vz-font-sans-serif);
+  --vz-body-font-size: 0.8125rem;
+  --vz-body-font-weight: 400;
+  --vz-body-line-height: 1.5;
+  --vz-body-color: #212529;
+  --vz-vertical-menu-title-color-dark: #838fb9;
+  --vz-vertical-menu-bg-dark: #405189;
+}
+

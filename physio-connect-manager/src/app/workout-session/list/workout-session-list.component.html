@@ -1,0 +1,75 @@
+<div *ngIf="workoutSessions$ | async as workoutSessions">
+
+  <div class="card plan-card" *ngIf="workoutSessions.length <= 0 else listCompletedSessions">
+    <h5 class="card-header text-center">No workouts completed</h5>
+    <div class="card-body"><p class="text-center">Patient did not yet complete any exercises in this plan</p></div>
+  </div>
+
+  <ng-template #listCompletedSessions>
+    <div class="mb-3 card plan-card" *ngFor="let workoutSession of workoutSessions">
+      <h5 class="card-header">Completed at: {{workoutSession.completedAt | date:'medium' }}</h5>
+      <div class="card-body">
+        <table class="table align-middle mb-0 bg-white">
+          <thead class="bg-light">
+          <tr>
+            <th>Exercise Name</th>
+            <th>Average repetitions</th>
+            <th>Sets</th>
+            <th>Effort Level</th>
+            <th>Pain Level</th>
+            <th>Patient Comment</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr  *ngFor="let completedExercise of workoutSession.completedExercises">
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="fw-normal mb-1"> {{completedExercise.name}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="fw-normal mb-1"> {{completedExercise.completedRepetition}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="fw-normal mb-1"> {{completedExercise.completedSets}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="fw-normal mb-1"> {{completedExercise.effortLevel}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="fw-normal mb-1"> {{completedExercise.painLevel}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="fw-normal mb-1"> {{completedExercise.patientComment}}</p>
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+
