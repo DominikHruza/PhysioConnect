@@ -17,7 +17,10 @@ This project is a collection of services that work together to create a Physioth
 Follow the steps below to deploy the Physio Connect application using Docker Compose:
 
 1. Clone the project repository to your local machine.
-2. Navigate to the directory containing the `docker-compose.yml` file.
+2. Navigate to the physio-connect-docker directory containing the `docker-compose.yml` file.
+```
+cd physio-connect-docker
+```
 3. Open a terminal and run the following command to start the services:
 
 ```
