@@ -21,7 +21,7 @@ Follow the steps below to deploy the Physio Connect application using Docker Com
 ```
 cd physio-connect-docker
 ```
-3. Open a terminal and run the following command to start the services:
+3. Run the following command to start the services:
 
 ```
 docker-compose up -d
