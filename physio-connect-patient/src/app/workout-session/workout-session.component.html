@@ -105,7 +105,7 @@
           </button>
           <a
             (click)="handleNextExerciseClick(exerciseForm)"
-            routerLink="/exercise-session/complete/planId"
+            routerLink="/exercise-session/complete"
             type="button"
             class="btn btn-success m-2"
           >
@@ -137,113 +137,4 @@
   </ng-container>
 </div>
 
-<!--  <div-->
-<!--    class="exerciseVideo embed-responsive embed-responsive-16by9 card-img-top mb-1 text-center"-->
-<!--  >-->
-<!--    <app-video-instruction-->
-<!--      [videoUrl]="getExerciseUrl(selectedPlannedExercise)"-->
-<!--    ></app-video-instruction>-->
-<!--  </div>-->
-<!--  <form #exerciseForm="ngForm">-->
-<!--    <div-->
-<!--      class="form-group form-inline"-->
-<!--      *ngFor="-->
-<!--        let item of [].constructor(selectedPlannedExercise.exrxSets);-->
-<!--        let i = index-->
-<!--      "-->
-<!--    >-->
-<!--      <label> Set {{ i + 1 }}: </label>-->
-<!--      <input-->
-<!--        ngModel-->
-<!--        name="set-{{ i + 1 }}"-->
-<!--        type="number"-->
-<!--        class="form-control reps-input"-->
-<!--        [value]="1"-->
-<!--        placeholder="Reps"-->
-<!--      />-->
-<!--      /{{ selectedPlannedExercise.exrxRepetition }} repetitions-->
-<!--    </div>-->
-<!--    <div class="mb-1">-->
-<!--      <label for="effortRange" class="form-label">Effort level</label>-->
-<!--      <input-->
-<!--        name="effortLevel"-->
-<!--        [ngModel]="selectedCompletedExercise.effortLevel"-->
-<!--        type="range"-->
-<!--        class="form-range"-->
-<!--        min="0"-->
-<!--        max="10"-->
-<!--        step="0.5"-->
-<!--        id="effortRange"-->
-<!--      />-->
-<!--    </div>-->
-<!--    <div class="mb-1">-->
-<!--      <label for="painRange" class="form-label">Pain level</label>-->
-<!--      <input-->
-<!--        [ngModel]="selectedCompletedExercise.painLevel"-->
-<!--        name="painLevel"-->
-<!--        type="range"-->
-<!--        class="form-range"-->
-<!--        min="0"-->
-<!--        max="10"-->
-<!--        step="0.5"-->
-<!--        id="painRange"-->
-<!--      />-->
-<!--    </div>-->
-<!--    <div class="mb-1">-->
-<!--      <label for="commentTextArea" class="form-label"-->
-<!--        >Write your comments</label-->
-<!--      >-->
-<!--      <textarea-->
-<!--        ngModel-->
-<!--        [value]="''"-->
-<!--        name="comment"-->
-<!--        class="form-control"-->
-<!--        id="commentTextArea"-->
-<!--        rows="3"-->
-<!--      >-->
-<!--      </textarea>-->
-<!--    </div>-->
-<!--    <div-->
-<!--      class="mb-5 exerciseButtonsContainer"-->
-<!--      *ngIf="-->
-<!--        selectedExerciseIndex < plannedExercises.length - 1;-->
-<!--        else completeSessionBtn-->
-<!--      "-->
-<!--    >-->
-<!--      <button-->
-<!--        [disabled]="selectedExerciseIndex < plannedExercises.length - 1"-->
-<!--        type="button"-->
-<!--        class="btn btn-secondary m-2"-->
-<!--        (click)="handlePreviousExerciseClick(exerciseForm)"-->
-<!--      >-->
-<!--        Repeat Previous-->
-<!--      </button>-->
-<!--      <button-->
-<!--        type="button"-->
-<!--        class="btn btn-secondary m-2"-->
-<!--        (click)="handleNextExerciseClick(exerciseForm)"-->
-<!--      >-->
-<!--        Next-->
-<!--      </button>-->
-<!--    </div>-->
-<!--    <ng-template #completeSessionBtn>-->
-<!--      <div class="mb-5 exerciseButtonsContainer">-->
-<!--        <button-->
-<!--          [disabled]="selectedExerciseIndex <= plannedExercises.length - 1"-->
-<!--          type="button"-->
-<!--          class="btn btn-secondary m-2"-->
-<!--          (click)="handlePreviousExerciseClick(exerciseForm)"-->
-<!--        >-->
-<!--          Repeat Previous-->
-<!--        </button>-->
-<!--        <a-->
-<!--          (click)="handleNextExerciseClick(exerciseForm)"-->
-<!--          routerLink="/exercise-session/complete"-->
-<!--          type="button"-->
-<!--          class="btn btn-success m-2"-->
-<!--        >-->
-<!--          Complete Session-->
-<!--        </a>-->
-<!--      </div>-->
-<!--    </ng-template>-->
-<!--  </form>-->
+

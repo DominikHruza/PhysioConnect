@@ -1,4 +1,8 @@
-<vg-player>
-  <video [vgMedia]="$any(media)" #media id="singleVideo" [src]="source" preload="auto" controls>
-  </video>
-</vg-player>
+<div>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <vg-player>
+    <video *ngIf="!loading" [vgMedia]="$any(media)" #media id="singleVideo" [src]="source" preload="auto" controls>
+    </video>
+  </vg-player>
+</div>
+

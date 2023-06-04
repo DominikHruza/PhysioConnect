@@ -28,6 +28,8 @@ import { WorkoutCompleteComponent } from './workout-complete/workout-complete.co
 import { RegisterComponent } from './auth/register/register.component';
 import {ValidateEqualModule} from "ng-validate-equal";
 import { APIInterceptor } from './shared/interceptor/api.intercepror';
+import {Spinner} from "@angular/cli/utilities/spinner";
+import {SpinnerComponent} from "./shared/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { APIInterceptor } from './shared/interceptor/api.intercepror';
     WorkoutSessionComponent,
     VideoInstructionComponent,
     WorkoutCompleteComponent,
-    RegisterComponent
+    RegisterComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

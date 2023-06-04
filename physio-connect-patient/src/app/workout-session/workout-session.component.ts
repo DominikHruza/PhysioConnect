@@ -186,6 +186,7 @@ export class WorkoutSessionComponent {
     if (!exercise.instructionUrl) {
       return '';
     }
+    console.log(exercise.instructionUrl)
     return exercise.instructionUrl;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {VideoInstructionService} from "./video-instruction.service";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
@@ -7,9 +7,10 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
   templateUrl: './video-instruction.component.html',
   styleUrls: ['./video-instruction.component.css']
 })
-export class VideoInstructionComponent implements OnInit {
+export class VideoInstructionComponent implements OnInit, OnChanges {
   source: SafeUrl;
   @Input() videoUrl: string;
+  loading: boolean;
 
 
   constructor(
@@ -18,6 +19,11 @@ export class VideoInstructionComponent implements OnInit {
   { }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.downloadVideoInstruction(this.videoUrl);
+  }
+  ngOnChanges(): void {
+    this.loading = true;
     this.downloadVideoInstruction(this.videoUrl);
   }
 
@@ -25,8 +31,10 @@ export class VideoInstructionComponent implements OnInit {
     this.videoInstructionService
       .downloadVideoInstruction(this.extractVideoInstructionName(url))
       .subscribe((response) => {
+
         var blobUrl = URL.createObjectURL(response!);
         this.source = this.sanitizer.bypassSecurityTrustUrl(blobUrl);
+        this.loading = false;
       });
   }
 
@@ -36,4 +44,6 @@ export class VideoInstructionComponent implements OnInit {
     }
     return url.substring(url.lastIndexOf('\\') + 1);
   }
+
+
 }
